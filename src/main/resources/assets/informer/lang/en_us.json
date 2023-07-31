@@ -1,0 +1,11 @@
+{
+  "key.informer": "Informer mod",
+  "category.informer.toggle": "Toggle all visual",
+  "openminecraft.button": "OMF",
+  "autoclick.title": "Autoclick GUI",
+  "armorstand.start": "ArmorStand",
+  "armorstand.stop": "Stop",
+  "armorstand.interval": "Interval(ms)",
+  "invalid.interval.value": "Invalid interval",
+  "no.entity.find": "No entity found!"
+}

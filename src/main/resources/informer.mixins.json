@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"package": "ru.informer.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"TileScreenMixin",
+		"ChatScreenMixin",
+		"GameMenuScreenMixin",
+		"InventoryMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

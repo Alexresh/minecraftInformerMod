@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "informer",
+	"version": "${version}",
+	"name": "informer",
+	"description": "Obabok's info mod",
+	"authors": [
+		"Obabok"
+	],
+	"contact": {
+		"homepage": "discord @_obabok",
+		"sources": ""
+	},
+	"license": "MIT",
+	"icon": "assets/informer/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"ru.informer.Main"
+		],
+		"client": [
+			"ru.informer.MainClient"
+		],
+		"fabric-datagen": [
+			"ru.informer.InformerModDataGenerator"
+		]
+	},
+	"mixins": [
+		"informer.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.21",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
