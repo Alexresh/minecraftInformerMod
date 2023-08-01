@@ -6,6 +6,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
@@ -25,28 +26,52 @@ public class AutoClickerScreen extends Screen {
     }
     @Override
     protected void init(){
-        this.addDrawableChild(ButtonWidget.builder(ScreenTexts.CANCEL, button -> this.client.setScreen(this.parent)).dimensions(this.width / 2 - 75, this.height / 2 - 10, 150, 20).build());
-        this.addDrawableChild(ButtonWidget.builder(Text.translatable("armorstand.stop"), button -> attacker.stopAttack()).dimensions(this.width / 2 + 25, this.height / 2 - 40, 50, 20).build());
+        //interval
+        this.intervalField = new TextFieldWidget(this.textRenderer,
+                this.width / 2 - 50, this.height / 2 - 70, 100, 20,
+                Text.translatable("autoclicker.interval"));
 
-        ButtonWidget startBtn = ButtonWidget.builder(Text.translatable("armorstand.start"), button -> attacker.startAttack(ArmorStandEntity.class, this.longInterval)).dimensions(this.width / 2 - 75, this.height / 2 - 40, 100, 20).build();
+        //start armorstand button
+        ButtonWidget startArmorstandBtn = ButtonWidget.builder(Text.translatable("autoclicker.armorstand.start"),
+                button -> attacker.startAttack(ArmorStandEntity.class, this.longInterval))
+                .dimensions(this.width / 2 - 50, this.height / 2 - 40, 100, 20).build();
+        //start nearest button
+        ButtonWidget startClosestBtn = ButtonWidget.builder(Text.translatable("autoclicker.nearest.start"),
+                        button -> attacker.startAttack(LivingEntity.class, this.longInterval))
+                .dimensions(this.width / 2 - 50, this.height / 2 - 20, 100, 20).build();
 
-        this.intervalField = new TextFieldWidget(this.textRenderer, this.width / 2 - 125, this.height / 2 - 40, 48, 20, Text.translatable("armorstand.interval"));
+        //stop button
+        this.addDrawableChild(ButtonWidget.builder(Text.translatable("autoclicker.stop"), button -> attacker.stopAttack())
+                .dimensions(this.width / 2 - 50, this.height / 2, 100, 20).build());
+
+
+        //Back button
+        this.addDrawableChild(ButtonWidget.builder(ScreenTexts.BACK, button -> this.client.setScreen(this.parent))
+                .dimensions(this.width / 2 - 50, this.height / 2 + 20, 100, 20).build());
+
         this.intervalField.setChangedListener(interval -> {
             Text text = this.checkInterval(interval);
             this.intervalField.setPlaceholder(Text.literal("" + this.longInterval).formatted(Formatting.DARK_GRAY));
             if (text == null) {
                 this.intervalField.setEditableColor(0xE0E0E0);
                 this.intervalField.setTooltip(null);
-                startBtn.active = true;
+                startArmorstandBtn.active = true;
+                startClosestBtn.active = true;
             } else {
                 this.intervalField.setEditableColor(0xFF5555);
                 this.intervalField.setTooltip(Tooltip.of(text));
-                startBtn.active = false;
+                startArmorstandBtn.active = false;
+                startClosestBtn.active = false;
             }
         });
         this.intervalField.setPlaceholder(Text.literal("" + this.longInterval).formatted(Formatting.DARK_GRAY));
         addDrawableChild(this.intervalField);
-        addDrawableChild(startBtn);
+        addDrawableChild(startArmorstandBtn);
+        addDrawableChild(startClosestBtn);
+    }
+    @Override
+    public boolean shouldPause() {
+        return false;
     }
     @Override
     public void tick() {

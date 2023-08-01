@@ -21,18 +21,18 @@ public class Attacker{
     private static final ScheduledExecutorService armortask = Executors.newScheduledThreadPool(1);
     private final EntityAttack entityAttack = new EntityAttack();
 
-    private ScheduledFuture future;
+    private ScheduledFuture existingTask;
 
     public void startAttack(Class<? extends LivingEntity> entity, long period){
-        if(future != null){
-            future.cancel(true);
+        if(existingTask != null){
+            existingTask.cancel(true);
         }
         entityAttack.setAttackableEntity(entity);
-        future = armortask.scheduleAtFixedRate(entityAttack,0,period, TimeUnit.MILLISECONDS);
+        existingTask = armortask.scheduleAtFixedRate(entityAttack,0,period, TimeUnit.MILLISECONDS);
     }
 
     public void stopAttack(){
-        future.cancel(true);
+        existingTask.cancel(true);
     }
 
     private class EntityAttack implements Runnable{

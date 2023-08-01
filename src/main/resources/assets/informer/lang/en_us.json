@@ -1,11 +1,11 @@
 {
-  "key.informer": "Informer mod",
-  "category.informer.toggle": "Toggle all visual",
   "openminecraft.button": "OMF",
+  "reload,button": "Reload config",
   "autoclick.title": "Autoclick GUI",
-  "armorstand.start": "ArmorStand",
-  "armorstand.stop": "Stop",
-  "armorstand.interval": "Interval(ms)",
+  "autoclicker.armorstand.start": "Armor stand",
+  "autoclicker.nearest.start": "Nearest Entity",
+  "autoclicker.stop": "Stop",
+  "autoclicker.interval": "Interval(ms)",
   "invalid.interval.value": "Invalid interval",
   "no.entity.find": "No entity found!"
 }

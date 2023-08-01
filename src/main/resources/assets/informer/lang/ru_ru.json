@@ -1,0 +1,11 @@
+{
+  "openminecraft.button": "OMF",
+  "reload,button": "Перезагрузить",
+  "autoclick.title": "Autoclick GUI",
+  "autoclicker.armorstand.start": "Стойка для брони",
+  "autoclicker.nearest.start": "Ближайший моб",
+  "autoclicker.stop": "Стоп",
+  "autoclicker.interval": "Интервал(мс)",
+  "invalid.interval.value": "Неправильный интервал",
+  "no.entity.find": "Моб не найден!"
+}

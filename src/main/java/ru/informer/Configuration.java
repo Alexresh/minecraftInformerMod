@@ -11,22 +11,35 @@ public class Configuration {
     private final File configFile = new File(configDir, "informer.properties");
     private final Properties properties = new Properties();
     public enum allProperties{
-        Visual
+        AutoClicker,
+        OpenMinecraftFolderButton,
+        Visual,
+        MoodNotification,
+        MoodSoundNotification,
+        CreeperNotification,
+        CreeperNotificationRadius,
+        CreeperSoundNotification,
+        MobHealthRender,
+        MobHealthRenderRadius,
+        VillagerExtendRender,
+        HorseExtendRender
+
     }
 
     public Configuration(){
-        if(!load()) {
-            Main.LOGGER.error("Config file corrupted!");
+        if(!reload()) {
+            Main.LOGGER.error("(Configuration.Configuration) config file corrupted!");
         }
     }
 
-    public boolean load(){
+    public boolean reload(){
         //config file check or create
         if(!configFile.exists()){
-            Main.LOGGER.warn("config file does not exist, creating");
+            Main.LOGGER.warn("(Configuration.reload) config file does not exist, creating");
             return create();
         }
         try (Reader reader = new FileReader(configFile)){
+            properties.clear();
             properties.load(reader);
         } catch (IOException e) {
             return false;
@@ -37,27 +50,28 @@ public class Configuration {
         try{
             //config dir check or create
             if(!configDir.exists()){
-                Main.LOGGER.warn("config dir does not exist, creating");
+                Main.LOGGER.warn("(Configuration.create) config dir does not exist, creating");
                 if(!configDir.mkdir()){
-                    Main.LOGGER.error("the configuration folder cannot be created!");
+                    Main.LOGGER.error("(Configuration.create) the configuration folder cannot be created!");
                     return false;
                 }
             }
             if(!configFile.createNewFile()){
-                Main.LOGGER.error("the configuration file cannot be created!");
+                Main.LOGGER.error("(Configuration.create) the configuration file cannot be created!");
                 return false;
             }else{
                 try (InputStream reader = ClassLoaderUtil.getClassLoader().getResourceAsStream("informer.properties")){
                     properties.load(reader);
-                    Main.LOGGER.info("load default config");
+                    Main.LOGGER.info("(Configuration.create) load default config");
                 } catch (IOException e) {
-                    Main.LOGGER.error("default config cannot be read");
+                    Main.LOGGER.error("(Configuration.create) default config cannot be read");
                     return false;
                 }
                 //write default properties to file
                 try (Writer writer = new FileWriter(configFile)) {
                     properties.store(writer,"Obabok's informer config file");
-                    Main.LOGGER.info("the configuration file created!");
+                    Main.LOGGER.info("(Configuration.create) the configuration file created!");
+                    return true;
                 }catch (IOException e){
                     return false;
                 }
@@ -65,7 +79,6 @@ public class Configuration {
         }catch (IOException e){
             return false;
         }
-        return false;
     }
 
     private boolean writePropertiesToFile(){
