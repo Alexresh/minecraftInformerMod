@@ -16,6 +16,7 @@ public class Main implements ModInitializer {
 	public static final int OPENMINFOLDER_HEIGHT = 20;
 	public static final File runDirectory = MinecraftClient.getInstance().runDirectory;
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	public static Configuration config = new Configuration();
 
 	@Override
 	public void onInitialize() {
