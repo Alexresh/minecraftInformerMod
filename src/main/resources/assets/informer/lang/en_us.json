@@ -7,5 +7,11 @@
   "autoclicker.stop": "Stop",
   "autoclicker.interval": "Interval(ms)",
   "invalid.interval.value": "Invalid interval",
-  "no.entity.find": "No entity found!"
+  "no.entity.find": "No entity found!",
+  "autoclicker.armorstand.start.tooltip": "Start hitting the nearest armor stand",
+  "autoclicker.nearest.start.tooltip": "Start hitting the nearest mob",
+  "autoclicker.stop.tooltip": "Stop hitting",
+  "category.informer.keys": "Informer mod",
+  "informer.fake.spectator.key": "Client spectator mode",
+  "informer.spectator.creative.key": "Switch creative<->spectator mode"
 }

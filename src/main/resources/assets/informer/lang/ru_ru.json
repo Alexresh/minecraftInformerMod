@@ -7,5 +7,11 @@
   "autoclicker.stop": "Стоп",
   "autoclicker.interval": "Интервал(мс)",
   "invalid.interval.value": "Неправильный интервал",
-  "no.entity.find": "Моб не найден!"
+  "no.entity.find": "Моб не найден!",
+  "autoclicker.armorstand.start.tooltip": "Начать бить ближайшую стойку для брони",
+  "autoclicker.nearest.start.tooltip": "Начать бить ближайшего моба",
+  "autoclicker.stop.tooltip": "Прекратить бить",
+  "category.informer.keys": "Informer мод",
+  "informer.fake.spectator.key": "Клиентский спектатор",
+  "informer.spectator.creative.key": "Переключение креатив<->спектатор"
 }

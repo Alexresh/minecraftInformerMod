@@ -8,11 +8,10 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Box;
+import ru.informer.Configuration;
+import ru.informer.Main;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 public class Attacker{
 
@@ -43,7 +42,9 @@ public class Attacker{
             LivingEntity closestEntity = client.player.getWorld().getClosestEntity(currentEntity, TargetPredicate.DEFAULT, client.player, 0,0,0, new Box(client.player.getBlockPos().add(-5,-5,-5), client.player.getBlockPos().add(5,5,5)));
             if(closestEntity == null){
                 client.player.sendMessage(Text.translatable("no.entity.find").formatted(Formatting.RED), true);
-                client.player.playSound(SoundEvents.BLOCK_LAVA_POP, SoundCategory.PLAYERS, 100,1);
+                if(Boolean.parseBoolean(Main.config.getProperty(Configuration.allProperties.AutoClickerNoEntitySoundNotification))){
+                    client.player.playSound(SoundEvents.BLOCK_LAVA_POP, SoundCategory.PLAYERS, 100,1);
+                }
             }else {
                 client.interactionManager.attackEntity(client.player, closestEntity);
             }

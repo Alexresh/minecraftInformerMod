@@ -34,15 +34,18 @@ public class AutoClickerScreen extends Screen {
         //start armorstand button
         ButtonWidget startArmorstandBtn = ButtonWidget.builder(Text.translatable("autoclicker.armorstand.start"),
                 button -> attacker.startAttack(ArmorStandEntity.class, this.longInterval))
-                .dimensions(this.width / 2 - 50, this.height / 2 - 40, 100, 20).build();
+                .dimensions(this.width / 2 - 50, this.height / 2 - 40, 100, 20)
+                .tooltip(Tooltip.of(Text.translatable("autoclicker.armorstand.start.tooltip"))).build();
         //start nearest button
         ButtonWidget startClosestBtn = ButtonWidget.builder(Text.translatable("autoclicker.nearest.start"),
                         button -> attacker.startAttack(LivingEntity.class, this.longInterval))
-                .dimensions(this.width / 2 - 50, this.height / 2 - 20, 100, 20).build();
+                .dimensions(this.width / 2 - 50, this.height / 2 - 20, 100, 20)
+                .tooltip(Tooltip.of(Text.translatable("autoclicker.nearest.start.tooltip"))).build();
 
         //stop button
         this.addDrawableChild(ButtonWidget.builder(Text.translatable("autoclicker.stop"), button -> attacker.stopAttack())
-                .dimensions(this.width / 2 - 50, this.height / 2, 100, 20).build());
+                .dimensions(this.width / 2 - 50, this.height / 2, 100, 20)
+                .tooltip(Tooltip.of(Text.translatable("autoclicker.stop.tooltip"))).build());
 
 
         //Back button

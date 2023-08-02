@@ -12,6 +12,7 @@ public class Configuration {
     private final Properties properties = new Properties();
     public enum allProperties{
         AutoClicker,
+        AutoClickerNoEntitySoundNotification,
         OpenMinecraftFolderButton,
         Visual,
         MoodNotification,
