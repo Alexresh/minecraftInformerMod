@@ -7,6 +7,8 @@ This mod adds the following:
 4) Notifies of the creeper's approach (by text and sound)
 5) Adds a button to open the minecraft folder to some interfaces
 6) [Note: anti-cheat will notice] Adds an autoclicker (hitting a armor stand or the nearest mob at a specified interval in milliseconds)
+7) Adds a hotkey for change gamemode to spectator and hotkey for change gamemode to spectator(in client)
+8) Automatic game mode change when falling into void in survival mode
 
 Everything is configured. You can reload the config by clicking a button in the option screen
 
@@ -25,6 +27,8 @@ vk: https://vk.com/alexresh77
 4) Уведомляет о приближении крипера (текстом и звуком)
 5) Добавляет в некоторые интерфейсы кнопку открытия папки майнкрафта
 6) [Заметка: античит заметит] Добавляет автокликер (бить стойку для брони или ближайшего моба с заданным интервалом в миллисекундах)
+7) Добавляет хоткей для переключения между выживанием и спектатором, а также хоткей для включения спектатора на клиенте
+8) Автоматическая смена режима игры на спектатор при падении в пустоту в режиме выживания (если нету прав, то сменит на клиенте)
 
 Всё настраивается в конфиге. Перезагрузить конфиг можно кнопкой в окне настроек
 
