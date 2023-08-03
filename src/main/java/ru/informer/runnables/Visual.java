@@ -99,8 +99,8 @@ public class Visual {
         public void run() {
             ClientPlayerEntity user = minecraftClient.player;
             //mood
-            if (moodNotificationEnabled && user != null && user.getMoodPercentage() > 0.95) {
-                user.sendMessage(Text.literal("MOOD!"),true);
+            if (moodNotificationEnabled && user != null && user.getMoodPercentage() > 0.98) {
+                user.sendMessage(Text.literal("MOOD!").formatted(Formatting.RED).formatted(Formatting.BOLD),true);
                 if(moodSoundNotificationEnabled) user.playSound(SoundEvents.ITEM_TRIDENT_HIT, SoundCategory.AMBIENT,100,1);
             }
             //creeper
@@ -111,7 +111,7 @@ public class Visual {
                 );
                 List<CreeperEntity> creepers = user.clientWorld.getEntitiesByClass(CreeperEntity.class, around, creeperEntity -> true);
                 if(!creepers.isEmpty()){
-                    user.sendMessage(Text.literal("Creeper!"),true);
+                    user.sendMessage(Text.translatable("creeper.name").formatted(Formatting.RED).formatted(Formatting.BOLD),true);
                     if(creeperSoundNotificationEnabled)
                         user.playSound(SoundEvents.ENTITY_PARROT_IMITATE_CREEPER,
                             SoundCategory.HOSTILE,

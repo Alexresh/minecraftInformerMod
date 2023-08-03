@@ -13,5 +13,6 @@
   "autoclicker.stop.tooltip": "Прекратить бить",
   "category.informer.keys": "Informer мод",
   "informer.fake.spectator.key": "Клиентский спектатор",
-  "informer.spectator.creative.key": "Переключение креатив<->спектатор"
+  "informer.spectator.creative.key": "Переключение креатив<->спектатор",
+  "creeper.name": "Крипер!"
 }

@@ -23,7 +23,8 @@ public class Configuration {
         MobHealthRender,
         MobHealthRenderRadius,
         VillagerExtendRender,
-        HorseExtendRender
+        HorseExtendRender,
+        SetSpectatorIfFallInVoid
 
     }
 

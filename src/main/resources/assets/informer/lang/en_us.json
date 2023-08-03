@@ -13,5 +13,6 @@
   "autoclicker.stop.tooltip": "Stop hitting",
   "category.informer.keys": "Informer mod",
   "informer.fake.spectator.key": "Client spectator mode",
-  "informer.spectator.creative.key": "Switch creative<->spectator mode"
+  "informer.spectator.creative.key": "Switch creative<->spectator mode",
+  "creeper.name": "Creeper!"
 }
