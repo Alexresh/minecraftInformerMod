@@ -1,5 +1,7 @@
 package ru.informer.runnables;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -26,6 +28,7 @@ import java.util.concurrent.TimeUnit;
 
 import static ru.informer.MainClient.minecraftClient;
 
+@Environment(EnvType.CLIENT)
 public class Visual {
     private static final ScheduledExecutorService visualTask = Executors.newScheduledThreadPool(1);
     private ScheduledFuture existingTask;

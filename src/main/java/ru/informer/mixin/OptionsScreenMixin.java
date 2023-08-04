@@ -1,5 +1,7 @@
 package ru.informer.mixin;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.OptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -9,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ru.informer.Main;
-
+@Environment(EnvType.CLIENT)
 @Mixin(OptionsScreen.class)
 public class OptionsScreenMixin extends Screen {
     protected OptionsScreenMixin(Text title) {

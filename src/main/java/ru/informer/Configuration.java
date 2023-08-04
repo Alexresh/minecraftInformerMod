@@ -1,11 +1,14 @@
 package ru.informer;
 
 import com.ibm.icu.impl.ClassLoaderUtil;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.*;
 import java.util.Properties;
 
+@Environment(EnvType.CLIENT)
 public class Configuration {
     private final File configDir = FabricLoader.getInstance().getConfigDir().toFile();
     private final File configFile = new File(configDir, "informer.properties");

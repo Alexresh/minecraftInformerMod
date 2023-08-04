@@ -13,7 +13,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import ru.informer.runnables.Attacker;
 
-@Environment(value= EnvType.CLIENT)
+@Environment(EnvType.CLIENT)
 public class AutoClickerScreen extends Screen {
 
     private static final Attacker attacker = new Attacker();

@@ -2,7 +2,10 @@ package ru.informer;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.util.Identifier;
+import net.minecraft.world.GameMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.informer.runnables.Visual;
@@ -10,7 +13,9 @@ import ru.informer.runnables.Visual;
 import java.io.File;
 
 public class Main implements ModInitializer {
+
 	public static final String MOD_ID = "informer";
+	public static final Identifier gamemodePacket = new Identifier("flightcraft", "gamemode_change_packet");
 	public static final int OPENMINFOLDER_X = 0;
 	public static final int OPENMINFOLDER_Y = 0;
 	public static final int OPENMINFOLDER_WIDTH = 30;

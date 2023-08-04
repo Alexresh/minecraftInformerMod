@@ -1,5 +1,7 @@
 package ru.informer.mixin;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -10,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ru.informer.Configuration;
 import ru.informer.Main;
-
+@Environment(EnvType.CLIENT)
 @Mixin(GameMenuScreen.class)
 public class GameMenuScreenMixin extends Screen {
     protected GameMenuScreenMixin(Text title) {

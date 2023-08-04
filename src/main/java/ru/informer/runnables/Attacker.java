@@ -1,5 +1,7 @@
 package ru.informer.runnables;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.TargetPredicate;
@@ -12,7 +14,7 @@ import ru.informer.Configuration;
 import ru.informer.Main;
 
 import java.util.concurrent.*;
-
+@Environment(EnvType.CLIENT)
 public class Attacker{
 
     private final MinecraftClient client = MinecraftClient.getInstance();

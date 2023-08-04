@@ -1,5 +1,7 @@
 package ru.informer.mixin;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -11,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ru.informer.Configuration;
 import ru.informer.Main;
 
-
+@Environment(EnvType.CLIENT)
 @Mixin(TitleScreen.class)
 public class TileScreenMixin extends Screen {
     protected TileScreenMixin(Text title) {
