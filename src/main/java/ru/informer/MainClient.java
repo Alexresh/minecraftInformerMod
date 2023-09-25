@@ -5,10 +5,16 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.GameMode;
 import org.lwjgl.glfw.GLFW;
 
@@ -18,8 +24,8 @@ public class MainClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        KeyBinding spectatorCreativeKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("informer.spectator.creative.key", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F10, "category.informer.keys"));
-        KeyBinding fakeSpectatorKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("informer.fake.spectator.key", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F9, "category.informer.keys"));
+        KeyBinding replaceKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("informer.replace.key", InputUtil.Type.KEYSYM, GLFW.GLFW_NOT_INITIALIZED, "category.informer.keys"));
+        KeyBinding fcSpectatorKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("informer.spectator.key", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F9, "category.informer.keys"));
 
         if(Boolean.parseBoolean(Main.config.getProperty(Configuration.allProperties.SetSpectatorIfFallInVoid))){
             ClientTickEvents.START_CLIENT_TICK.register(client -> {
@@ -36,19 +42,9 @@ public class MainClient implements ClientModInitializer {
             });
         }
 
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (spectatorCreativeKey.wasPressed()){
-                if(client.interactionManager.getCurrentGameMode() == GameMode.SURVIVAL || client.interactionManager.getCurrentGameMode() == GameMode.CREATIVE)
-                {
-                    client.player.networkHandler.sendCommand("gamemode spectator");
-                }else{
-                    client.player.networkHandler.sendCommand("gamemode survival");
-                }
-            }
-        });
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (fakeSpectatorKey.wasPressed()){
+            while (fcSpectatorKey.wasPressed()){
                 PacketByteBuf data =  PacketByteBufs.create();
                 if(client.interactionManager.getCurrentGameMode() == GameMode.SURVIVAL)
                 {
@@ -59,6 +55,24 @@ public class MainClient implements ClientModInitializer {
                 ClientPlayNetworking.send(Main.gamemodePacket, data);
             }
         });
+
+        ClientTickEvents.START_CLIENT_TICK.register(client -> {
+            if(replaceKey.isPressed()){
+                if(client.interactionManager.getCurrentGameMode() == GameMode.CREATIVE && !client.player.getInventory().getMainHandStack().isEmpty()){
+                    HitResult raycast = client.player.raycast(5,0,true);
+
+                    if(raycast instanceof BlockHitResult hitResult){
+                        Block hitBlock = client.world.getBlockState(hitResult.getBlockPos()).getBlock();
+                        if(hitBlock != Blocks.AIR && hitBlock.asItem() != client.player.getInventory().getMainHandStack().getItem()){
+                            client.interactionManager.attackBlock(hitResult.getBlockPos(), Direction.UP);
+                            client.interactionManager.interactBlock(client.player, Hand.MAIN_HAND, hitResult);
+                        }
+                    }
+
+                }
+            }
+        });
+
     }
 
 

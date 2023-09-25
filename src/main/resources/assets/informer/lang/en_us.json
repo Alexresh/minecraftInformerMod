@@ -12,7 +12,7 @@
   "autoclicker.nearest.start.tooltip": "Start hitting the nearest mob",
   "autoclicker.stop.tooltip": "Stop hitting",
   "category.informer.keys": "Informer mod",
-  "informer.fake.spectator.key": "Client spectator mode",
-  "informer.spectator.creative.key": "Switch creative<->spectator mode",
+  "informer.spectator.key": "[FlightCraft only] Switch spectator<->survival",
+  "informer.replace.key": "Replace blocks in creative",
   "creeper.name": "Creeper!"
 }

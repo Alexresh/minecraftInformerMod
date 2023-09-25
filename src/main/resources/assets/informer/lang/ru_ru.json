@@ -12,7 +12,7 @@
   "autoclicker.nearest.start.tooltip": "Начать бить ближайшего моба",
   "autoclicker.stop.tooltip": "Прекратить бить",
   "category.informer.keys": "Informer мод",
-  "informer.fake.spectator.key": "Клиентский спектатор",
-  "informer.spectator.creative.key": "Переключение креатив<->спектатор",
+  "informer.spectator.key": "[FlightCraft only] Переключение в спектатор и назад",
+  "informer.replace.key": "Заменяет блоки в креативе",
   "creeper.name": "Крипер!"
 }
