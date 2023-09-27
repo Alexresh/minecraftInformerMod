@@ -14,5 +14,6 @@
   "category.informer.keys": "Informer мод",
   "informer.spectator.key": "[FlightCraft only] Переключение в спектатор и назад",
   "informer.replace.key": "Заменяет блоки в креативе",
-  "creeper.name": "Крипер!"
+  "creeper.name": "Крипер!",
+  "damage.restriction" : "Использование предмета запрещено, почините его"
 }

@@ -4,13 +4,20 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -42,6 +49,22 @@ public class MainClient implements ClientModInitializer {
             });
         }
 
+        AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
+            if(!world.isClient || !Boolean.parseBoolean(Main.config.getProperty(Configuration.allProperties.ToolBreakRestriction))) return ActionResult.PASS;
+            if(player.getMainHandStack().isDamageable() && player.getMainHandStack().getDamage() > player.getMainHandStack().getMaxDamage() - 3){
+                player.sendMessage(Text.translatable("damage.restriction").formatted(Formatting.RED).formatted(Formatting.BOLD), true);
+                return ActionResult.FAIL;
+            }
+            return ActionResult.PASS;
+        });
+
+        HudRenderCallback.EVENT.register((drawContext, tickDelta) -> {
+            if(!Boolean.parseBoolean(Main.config.getProperty(Configuration.allProperties.HUDCountAllItems))) return;
+            if(minecraftClient.player == null || minecraftClient.player.getInventory().getMainHandStack().isEmpty()) return;
+            Inventory playerInventory = minecraftClient.player.getInventory();
+            ItemStack mainHandStack = minecraftClient.player.getMainHandStack();
+            drawContext.drawText(minecraftClient.textRenderer, Text.literal("" + playerInventory.count(mainHandStack.getItem())).formatted(Formatting.GOLD),drawContext.getScaledWindowWidth()/2 + 100,drawContext.getScaledWindowHeight() - 15, 0xff000000, false );
+        });
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (fcSpectatorKey.wasPressed()){
@@ -72,10 +95,5 @@ public class MainClient implements ClientModInitializer {
                 }
             }
         });
-
     }
-
-
-
-
 }

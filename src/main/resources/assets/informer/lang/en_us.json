@@ -14,5 +14,6 @@
   "category.informer.keys": "Informer mod",
   "informer.spectator.key": "[FlightCraft only] Switch spectator<->survival",
   "informer.replace.key": "Replace blocks in creative",
-  "creeper.name": "Creeper!"
+  "creeper.name": "Creeper!",
+  "damage.restriction" : "Use item is blocked! Repair it!"
 }

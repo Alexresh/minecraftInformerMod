@@ -27,7 +27,9 @@ public class Configuration {
         MobHealthRenderRadius,
         VillagerExtendRender,
         HorseExtendRender,
-        SetSpectatorIfFallInVoid
+        SetSpectatorIfFallInVoid,
+        ToolBreakRestriction,
+        HUDCountAllItems
 
     }
 
