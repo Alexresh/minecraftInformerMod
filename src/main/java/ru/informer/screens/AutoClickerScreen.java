@@ -79,9 +79,6 @@ public class AutoClickerScreen extends Screen {
     @Override
     public void tick() {
         super.tick();
-        if (this.intervalField != null) {
-            this.intervalField.tick();
-        }
     }
 
     private Text checkInterval(String interval) {

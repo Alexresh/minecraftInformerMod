@@ -109,8 +109,8 @@ public class Visual {
             //creeper
             if(creeperNotificationEnabled && user != null){
                 Box around = new Box(
-                        user.getBlockPos().add(-creeperNotificationRadius,-creeperNotificationRadius,-creeperNotificationRadius),
-                        user.getBlockPos().add(creeperNotificationRadius,creeperNotificationRadius,creeperNotificationRadius)
+                        user.getPos().add(-creeperNotificationRadius,-creeperNotificationRadius,-creeperNotificationRadius),
+                        user.getPos().add(creeperNotificationRadius,creeperNotificationRadius,creeperNotificationRadius)
                 );
                 List<CreeperEntity> creepers = user.clientWorld.getEntitiesByClass(CreeperEntity.class, around, creeperEntity -> true);
                 if(!creepers.isEmpty()){

@@ -19,7 +19,7 @@ public class Attacker{
 
     private final MinecraftClient client = MinecraftClient.getInstance();
 
-    private static final ScheduledExecutorService armortask = Executors.newScheduledThreadPool(1);
+    private static final ScheduledExecutorService armorTask = Executors.newScheduledThreadPool(1);
     private final EntityAttack entityAttack = new EntityAttack();
 
     private ScheduledFuture existingTask;
@@ -29,7 +29,7 @@ public class Attacker{
             existingTask.cancel(true);
         }
         entityAttack.setAttackableEntity(entity);
-        existingTask = armortask.scheduleAtFixedRate(entityAttack,0,period, TimeUnit.MILLISECONDS);
+        existingTask = armorTask.scheduleAtFixedRate(entityAttack,0,period, TimeUnit.MILLISECONDS);
     }
 
     public void stopAttack(){
@@ -41,7 +41,7 @@ public class Attacker{
 
         @Override
         public void run() {
-            LivingEntity closestEntity = client.player.getWorld().getClosestEntity(currentEntity, TargetPredicate.DEFAULT, client.player, 0,0,0, new Box(client.player.getBlockPos().add(-5,-5,-5), client.player.getBlockPos().add(5,5,5)));
+            LivingEntity closestEntity = client.player.getWorld().getClosestEntity(currentEntity, TargetPredicate.DEFAULT, client.player, 0,0,0, new Box(client.player.getPos().add(-5,-5,-5), client.player.getPos().add(5,5,5)));
             if(closestEntity == null){
                 client.player.sendMessage(Text.translatable("no.entity.find").formatted(Formatting.RED), true);
                 if(Boolean.parseBoolean(Main.config.getProperty(Configuration.allProperties.AutoClickerNoEntitySoundNotification))){

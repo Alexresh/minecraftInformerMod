@@ -29,7 +29,8 @@ public class Configuration {
         HorseExtendRender,
         SetSpectatorIfFallInVoid,
         ToolBreakRestriction,
-        HUDCountAllItems
+        HUDCountAllItems,
+        PhantomsWarning
 
     }
 
