@@ -15,5 +15,7 @@
   "informer.spectator.key": "[FlightCraft only] Переключение в спектатор и назад",
   "informer.replace.key": "Заменяет блоки в креативе",
   "creeper.name": "Крипер!",
-  "damage.restriction" : "Использование предмета запрещено, почините его"
+  "damage.restriction" : "Использование предмета запрещено, почините его",
+  "phantom.warn.title" : "Фантомы!",
+  "phantom.warn.description" : "Спать, режим"
 }

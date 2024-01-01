@@ -16,8 +16,10 @@ public class PhantomWarning {
             sleepTimer = 0;
             client.getNetworkHandler().sendPacket(new ClientStatusC2SPacket(ClientStatusC2SPacket.Mode.REQUEST_STATS));
             if(client.player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(Stats.TIME_SINCE_REST)) >= 70000){
-                client.getToastManager().add(new SystemToast(SystemToast.Type.PERIODIC_NOTIFICATION, Text.literal("Phantoms!").formatted(Formatting.RED), Text.literal("GO SLEEP!").formatted(Formatting.GOLD)));
+                client.getToastManager().add(new SystemToast(SystemToast.Type.PERIODIC_NOTIFICATION, Text.translatable("phantom.warn.title").formatted(Formatting.RED), Text.translatable("phantom.warn.description")));
             }
         }
     }
+
+
 }

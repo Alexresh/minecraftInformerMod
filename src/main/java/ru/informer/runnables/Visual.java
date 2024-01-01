@@ -16,7 +16,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Box;
 import net.minecraft.village.VillagerData;
-import ru.informer.Configuration;
+import ru.informer.utils.Configuration;
 import ru.informer.Main;
 
 import java.text.DecimalFormat;

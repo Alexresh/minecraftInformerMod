@@ -7,6 +7,7 @@ import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.informer.runnables.Visual;
+import ru.informer.utils.Configuration;
 
 import java.io.File;
 

@@ -11,6 +11,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ru.informer.Main;
+import ru.informer.utils.TickEvents;
+
 @Environment(EnvType.CLIENT)
 @Mixin(OptionsScreen.class)
 public class OptionsScreenMixin extends Screen {
@@ -24,6 +26,7 @@ public class OptionsScreenMixin extends Screen {
                 Main.LOGGER.error("(OptionScreenMixin.addReloadBtn) config file corrupted");
             }
             Main.visual.reload();
+            TickEvents.reload();
         }).dimensions(Main.OPENMINFOLDER_X , Main.OPENMINFOLDER_Y, 80, Main.OPENMINFOLDER_HEIGHT).build());
     }
 }

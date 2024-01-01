@@ -1,9 +1,10 @@
-package ru.informer;
+package ru.informer.utils;
 
 import com.ibm.icu.impl.ClassLoaderUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
+import ru.informer.Main;
 
 import java.io.*;
 import java.util.Properties;

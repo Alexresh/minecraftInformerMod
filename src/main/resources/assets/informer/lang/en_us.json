@@ -15,5 +15,7 @@
   "informer.spectator.key": "[FlightCraft only] Switch spectator<->survival",
   "informer.replace.key": "Replace blocks in creative",
   "creeper.name": "Creeper!",
-  "damage.restriction" : "Use item is blocked! Repair it!"
+  "damage.restriction" : "Use item is blocked! Repair it!",
+  "phantom.warn.title" : "Phantoms!",
+  "phantom.warn.description" : "Go sleep"
 }

@@ -10,7 +10,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Box;
-import ru.informer.Configuration;
+import ru.informer.utils.Configuration;
 import ru.informer.Main;
 
 import java.util.concurrent.*;
