@@ -3,10 +3,12 @@ package ru.informer.utils;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.network.PacketByteBuf;
@@ -17,23 +19,26 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.GameMode;
 import org.lwjgl.glfw.GLFW;
 import ru.informer.Main;
+import ru.informer.screens.SavedItemsScreen;
 
-public class Keybinds {
+public class Keybindings {
     public static KeyBinding replaceKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("informer.replace.key", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F9, "category.informer.keys"));
     public static KeyBinding fcSpectatorKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("informer.spectator.key", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F9, "category.informer.keys"));
-    //public static KeyBinding test = KeyBindingHelper.registerKeyBinding(new KeyBinding("informer.spectator.key1", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F10, "category.informer.keys"));
+    public static KeyBinding NbtHudScaleChanger = KeyBindingHelper.registerKeyBinding(new KeyBinding("informer.hud.scale", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "category.informer.keys"));
 
     public static void register(){
-        ClientTickEvents.START_CLIENT_TICK.register(Keybinds::spectatorKey);
-        ClientTickEvents.START_CLIENT_TICK.register(Keybinds::replaceKey);
+        ClientTickEvents.START_CLIENT_TICK.register(Keybindings::spectatorKey);
+        ClientTickEvents.START_CLIENT_TICK.register(Keybindings::nbtScaleKey);
+        HudRenderCallback.EVENT.register(Keybindings::replaceKey);
     }
 
-    private static void replaceKey(MinecraftClient client){
-        if(Keybinds.replaceKey.isPressed() && client.interactionManager != null && client.player != null && client.world != null){
+    private static void replaceKey(DrawContext drawContext, float v) {
+        MinecraftClient client = MinecraftClient.getInstance();
+        if(Keybindings.replaceKey.isPressed() && client.interactionManager != null && client.player != null && client.world != null){
             if(client.interactionManager.getCurrentGameMode() == GameMode.CREATIVE && !client.player.getInventory().getMainHandStack().isEmpty()){
-                HitResult raycast = client.player.raycast(5,0,true);
-
-                if(raycast instanceof BlockHitResult hitResult){
+                HitResult raycast =  client.crosshairTarget;
+                if(raycast != null && raycast.getType() == HitResult.Type.BLOCK){
+                    BlockHitResult hitResult = (BlockHitResult) raycast;
                     Block hitBlock = client.world.getBlockState(hitResult.getBlockPos()).getBlock();
                     if(hitBlock != Blocks.AIR && hitBlock.asItem() != client.player.getInventory().getMainHandStack().getItem()){
                         client.interactionManager.attackBlock(hitResult.getBlockPos(), Direction.UP);
@@ -44,8 +49,21 @@ public class Keybinds {
         }
     }
 
+    private static void nbtScaleKey(MinecraftClient client) {
+        if(Keybindings.NbtHudScaleChanger.wasPressed()){
+                client.setScreen(new SavedItemsScreen(client.player));
+
+            /*if(HudEntityNbt.scale > 1.5f) HudEntityNbt.scale = 0.1f;
+            HudEntityNbt.scale += 0.1f;*/
+        }
+    }
+
+    private static void replaceKey(MinecraftClient client){
+
+    }
+
     private static void spectatorKey(MinecraftClient client){
-        while (Keybinds.fcSpectatorKey.wasPressed() && client.interactionManager != null){
+        while (Keybindings.fcSpectatorKey.wasPressed() && client.interactionManager != null){
             PacketByteBuf data =  PacketByteBufs.create();
             if(client.interactionManager.getCurrentGameMode() == GameMode.SURVIVAL)
             {

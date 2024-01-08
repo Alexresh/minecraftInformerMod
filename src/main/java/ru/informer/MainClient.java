@@ -2,7 +2,7 @@ package ru.informer;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.MinecraftClient;
-import ru.informer.utils.Keybinds;
+import ru.informer.utils.Keybindings;
 import ru.informer.utils.TickEvents;
 
 public class MainClient implements ClientModInitializer {
@@ -11,7 +11,7 @@ public class MainClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        Keybinds.register();
+        Keybindings.register();
         TickEvents.reload();
     }
 

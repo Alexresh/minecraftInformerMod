@@ -31,7 +31,8 @@ public class Configuration {
         SetSpectatorIfFallInVoid,
         ToolBreakRestriction,
         HUDCountAllItems,
-        PhantomsWarning
+        PhantomsWarning,
+        ShowEntityNbt
 
     }
 

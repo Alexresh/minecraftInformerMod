@@ -2,14 +2,21 @@ package ru.informer.runnables;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.block.BeehiveBlock;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.render.debug.BeeDebugRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.mob.CreeperEntity;
+import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.HorseEntity;
 import net.minecraft.entity.passive.VillagerEntity;
+import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.network.ClientConnection;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -45,6 +52,7 @@ public class Visual {
     private static int mobHealthRenderRadius = 15;
     private static boolean villagerExtendRender = false;
     private static boolean horseExtendRender = false;
+    private static final int schedulePeriod = 1000;
 
 
     public Visual(){
@@ -79,7 +87,7 @@ public class Visual {
         if(existingTask != null){
             existingTask.cancel(true);
         }
-        existingTask = visualTask.scheduleAtFixedRate(Worker,0,1000, TimeUnit.MILLISECONDS);
+        existingTask = visualTask.scheduleAtFixedRate(Worker,0, schedulePeriod, TimeUnit.MILLISECONDS);
     }
     private void disableVisual() {
         if(existingTask != null) {

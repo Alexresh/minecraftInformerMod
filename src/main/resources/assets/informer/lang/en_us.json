@@ -17,5 +17,6 @@
   "creeper.name": "Creeper!",
   "damage.restriction" : "Use item is blocked! Repair it!",
   "phantom.warn.title" : "Phantoms!",
-  "phantom.warn.description" : "Go sleep"
+  "phantom.warn.description" : "Go sleep",
+  "informer.hud.scale" : "Change nbt scale"
 }
