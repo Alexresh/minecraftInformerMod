@@ -1,4 +1,4 @@
-package ru.informer.utils.Listeners;
+package ru.informer.utils.listeners;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.inventory.Inventory;

@@ -6,7 +6,8 @@
 		"TileScreenMixin",
 		"GameMenuScreenMixin",
 		"InventoryMixin",
-		"OptionsScreenMixin"
+		"OptionsScreenMixin",
+		"CreativeInventoryMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

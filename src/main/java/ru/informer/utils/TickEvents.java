@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import ru.informer.Main;
-import ru.informer.utils.Listeners.*;
+import ru.informer.utils.listeners.*;
 
 public class TickEvents {
     public static void reload() {
@@ -18,12 +18,6 @@ public class TickEvents {
             HudCountItems.registered = true;
             HudRenderCallback.EVENT.register(HudCountItems::run);
             Main.LOGGER.info("HudCountItems registered");
-        }
-
-        if(Boolean.parseBoolean(Main.config.getProperty(Configuration.allProperties.ShowEntityNbt)) && !HudNbt.registered){
-            HudNbt.registered = true;
-            HudRenderCallback.EVENT.register(HudNbt::run);
-            Main.LOGGER.info("HudEntityNbt registered");
         }
 
         if(Boolean.parseBoolean(Main.config.getProperty(Configuration.allProperties.ToolBreakRestriction)) && !ToolBreakRestriction.registered){

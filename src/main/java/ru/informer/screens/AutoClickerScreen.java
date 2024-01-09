@@ -36,7 +36,7 @@ public class AutoClickerScreen extends Screen {
                 button -> attacker.startAttack(ArmorStandEntity.class, this.longInterval))
                 .dimensions(this.width / 2 - 50, this.height / 2 - 40, 100, 20)
                 .tooltip(Tooltip.of(Text.translatable("autoclicker.armorstand.start.tooltip"))).build();
-        //start nearest button
+        //start the nearest button
         ButtonWidget startClosestBtn = ButtonWidget.builder(Text.translatable("autoclicker.nearest.start"),
                         button -> attacker.startAttack(LivingEntity.class, this.longInterval))
                 .dimensions(this.width / 2 - 50, this.height / 2 - 20, 100, 20)
@@ -76,10 +76,7 @@ public class AutoClickerScreen extends Screen {
     public boolean shouldPause() {
         return false;
     }
-    @Override
-    public void tick() {
-        super.tick();
-    }
+
 
     private Text checkInterval(String interval) {
         if (interval.isBlank()) {

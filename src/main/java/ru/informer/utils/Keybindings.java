@@ -19,17 +19,16 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.GameMode;
 import org.lwjgl.glfw.GLFW;
 import ru.informer.Main;
-import ru.informer.screens.SavedItemsScreen;
 
 public class Keybindings {
-    public static KeyBinding replaceKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("informer.replace.key", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F9, "category.informer.keys"));
-    public static KeyBinding fcSpectatorKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("informer.spectator.key", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F9, "category.informer.keys"));
-    public static KeyBinding NbtHudScaleChanger = KeyBindingHelper.registerKeyBinding(new KeyBinding("informer.hud.scale", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "category.informer.keys"));
+    public static final KeyBinding replaceKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("informer.replace.key", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "category.informer.keys"));
+    public static final KeyBinding fcSpectatorKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("informer.spectator.key", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "category.informer.keys"));
+
 
     public static void register(){
         ClientTickEvents.START_CLIENT_TICK.register(Keybindings::spectatorKey);
-        ClientTickEvents.START_CLIENT_TICK.register(Keybindings::nbtScaleKey);
         HudRenderCallback.EVENT.register(Keybindings::replaceKey);
+
     }
 
     private static void replaceKey(DrawContext drawContext, float v) {
@@ -47,19 +46,6 @@ public class Keybindings {
                 }
             }
         }
-    }
-
-    private static void nbtScaleKey(MinecraftClient client) {
-        if(Keybindings.NbtHudScaleChanger.wasPressed()){
-                client.setScreen(new SavedItemsScreen(client.player));
-
-            /*if(HudEntityNbt.scale > 1.5f) HudEntityNbt.scale = 0.1f;
-            HudEntityNbt.scale += 0.1f;*/
-        }
-    }
-
-    private static void replaceKey(MinecraftClient client){
-
     }
 
     private static void spectatorKey(MinecraftClient client){

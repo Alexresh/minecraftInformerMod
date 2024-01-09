@@ -17,6 +17,5 @@
   "creeper.name": "Крипер!",
   "damage.restriction" : "Использование предмета запрещено, почините его",
   "phantom.warn.title" : "Фантомы!",
-  "phantom.warn.description" : "Спать, режим",
-  "informer.hud.scale" : "Изменение масштаба nbt"
+  "phantom.warn.description" : "Спать, режим"
 }

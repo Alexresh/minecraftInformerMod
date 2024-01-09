@@ -14,12 +14,12 @@ import java.util.ArrayList;
 
 @Environment(EnvType.CLIENT)
 public class SavedItemsStorage {
-    private boolean loaded;
+    private static boolean loaded;
 
-    private NbtCompound items;
-    private final Path savedItemsFile = FabricLoader.getInstance().getGameDir().resolve("savedItems.nbt");
+    private static NbtCompound items;
+    private static final Path savedItemsFile = FabricLoader.getInstance().getGameDir().resolve("savedItems.nbt");
 
-    private void load(){
+    private static void load(){
         try{
             items = NbtIo.read(savedItemsFile);
             loaded = true;
@@ -29,7 +29,7 @@ public class SavedItemsStorage {
 
     }
 
-    private void write(){
+    private static void write(){
         try{
             NbtIo.write(items, savedItemsFile);
         } catch (IOException e) {
@@ -37,7 +37,7 @@ public class SavedItemsStorage {
         }
     }
 
-    public void setItems(ArrayList<ItemStack> itemStacks){
+    public static void setItems(ArrayList<ItemStack> itemStacks){
         items = new NbtCompound();
         for(int i = 0; i < itemStacks.size(); i++){
             NbtCompound compound = new NbtCompound();
@@ -47,7 +47,7 @@ public class SavedItemsStorage {
         write();
     }
 
-    public ArrayList<ItemStack> getItems(){
+    public static ArrayList<ItemStack> getItems(){
         if(!loaded){
             load();
         }
