@@ -42,9 +42,15 @@ public abstract class InventoryMixin extends AbstractInventoryScreen<PlayerScree
             ItemStack savedItem = handler.getCursorStack().copyWithCount(1);
             if(!savedItem.isEmpty()){
                 ArrayList<ItemStack> items = SavedItemsStorage.getItems();
+                for (ItemStack leftItem: items) {
+                    if(ItemStack.canCombine(leftItem, savedItem)) {
+                        client.player.sendMessage(Text.translatable("saved.items.module").append(Text.translatable("saved.items.already.saved")));
+                        return super.keyPressed(keyCode, scanCode, modifiers);
+                    }
+                }
                 items.add(savedItem);
                 SavedItemsStorage.setItems(items);
-                client.player.sendMessage(Text.literal("[savedItems]+" + savedItem.getItem().toString()));
+                client.player.sendMessage(Text.translatable("saved.items.module").append(Text.literal("+" + savedItem.getItem().toString())));
             }
         }
         return super.keyPressed(keyCode, scanCode, modifiers);

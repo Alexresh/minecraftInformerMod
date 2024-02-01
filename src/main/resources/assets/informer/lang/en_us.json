@@ -1,6 +1,6 @@
 {
   "openminecraft.button": "OMF",
-  "reload,button": "Reload config",
+  "reload.button": "Reload config",
   "autoclick.title": "Autoclick GUI",
   "autoclicker.armorstand.start": "Armor stand",
   "autoclicker.nearest.start": "Nearest Entity",
@@ -17,5 +17,8 @@
   "creeper.name": "Creeper!",
   "damage.restriction" : "Use item is blocked! Repair it!",
   "phantom.warn.title" : "Phantoms!",
-  "phantom.warn.description" : "Go sleep"
+  "phantom.warn.description" : "Go sleep",
+  "open.saved.items" : "Favorites",
+  "saved.items.module" : "[savedItems]: ",
+  "saved.items.already.saved" : "already saved"
 }

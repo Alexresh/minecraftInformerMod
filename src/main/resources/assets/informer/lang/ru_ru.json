@@ -17,5 +17,8 @@
   "creeper.name": "Крипер!",
   "damage.restriction" : "Использование предмета запрещено, почините его",
   "phantom.warn.title" : "Фантомы!",
-  "phantom.warn.description" : "Спать, режим"
+  "phantom.warn.description" : "Спать, режим",
+  "open.saved.items" : "Сохраненки",
+  "saved.items.module" : "[savedItems]: ",
+  "saved.items.already.saved" : "уже сохранено"
 }

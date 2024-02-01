@@ -9,6 +9,10 @@ This mod adds the following:
 6) [Note: anti-cheat will notice] Adds an autoclicker (hitting a armor stand or the nearest mob at a specified interval in milliseconds)
 7) Adds a hotkey for change gamemode to spectator and hotkey for change gamemode to spectator(in client)
 8) Automatic game mode change when falling into void in survival mode
+9) ReplaceKey: press it to replace blocks in the creative when hovering over them
+10) toolBreakRestriction: prevents the tool in your hand from breaking
+11) PhantomWarning: if you've been awake long enough, it will alert you to phantoms
+12) Adds item saving like in creative, but more convenient. In creative, when you move an item with the mouse, press the "a" button, the item will be saved. When you click tab button, all your saved items will be displayed, left click will give you 1 item, right click-64, middle-click will delete the saved item.
 
 Everything is configured. You can reload the config by clicking a button in the option screen
 
@@ -29,6 +33,10 @@ vk: https://vk.com/alexresh77
 6) [Заметка: античит заметит] Добавляет автокликер (бить стойку для брони или ближайшего моба с заданным интервалом в миллисекундах)
 7) Добавляет хоткей для переключения между выживанием и спектатором, а также хоткей для включения спектатора на клиенте
 8) Автоматическая смена режима игры на спектатор при падении в пустоту в режиме выживания (если нету прав, то сменит на клиенте)
+9) ReplaceKey: зажмите эту клавишу и блоки будут заменяться при наведении на них
+10) toolBreakRestriction: предотвращает поломку инструмента
+11) PhantomWarning: оповестит вас ночью, когда должны прилететь фантомы
+12) Добавляет сохранение предметов как в креативе, но более удобно. В креативе, при перемещении предмета мышкой нажмите кнопку "a", предмет сохранится. При нажатии кнопки tab отобразятся все ваши сохраненные предметы, левый клик выдаст вам 1 предмет, правый - 64, средний - удалит сохраненный предмет.
 
 Всё настраивается в конфиге. Перезагрузить конфиг можно кнопкой в окне настроек
 

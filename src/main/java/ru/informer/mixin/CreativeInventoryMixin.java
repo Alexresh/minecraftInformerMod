@@ -30,6 +30,7 @@ public abstract class CreativeInventoryMixin extends AbstractInventoryScreen<Cre
     private final int interfaceX = 10;
     private final int interfaceY = 10;
     private ArrayList<ItemStack> items;
+    private boolean enabled = false;
 
     public CreativeInventoryMixin(CreativeInventoryScreen.CreativeScreenHandler screenHandler, PlayerInventory playerInventory, Text text) {
         super(screenHandler, playerInventory, text);
@@ -65,6 +66,7 @@ public abstract class CreativeInventoryMixin extends AbstractInventoryScreen<Cre
 
     @Inject(method = "render", at = @At("HEAD"))
     public void render(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci){
+        if(!enabled) return;
         //interfaceX = context.getScaledWindowWidth() / 2 - (rowCount * itemSize) / 2;
         for (int i = 0; i < items.size(); i++){
             int x = (i % rowCount) * itemSize + interfaceX;
@@ -82,11 +84,22 @@ public abstract class CreativeInventoryMixin extends AbstractInventoryScreen<Cre
 
     @Inject(method = "keyPressed", at = @At("HEAD"))
     public void keyPressed(int keyCode, int scanCode, int modifiers, CallbackInfoReturnable ci){
+        //client.player.sendMessage(Text.literal(""+scanCode+" "+keyCode));
         if(keyCode == 65){
             ItemStack savedItem = handler.getCursorStack().copyWithCount(1);
             if(!savedItem.isEmpty()){
+                for (ItemStack leftItem: items) {
+                    if(ItemStack.canCombine(leftItem, savedItem)) {
+                        client.player.sendMessage(Text.translatable("saved.items.module").append(Text.translatable("saved.items.already.saved")));
+                        return;
+                    }
+                }
                 items.add(savedItem);
             }
+        }
+        if(keyCode == 258 && client != null && client.player != null){
+            enabled = !enabled;
+            client.player.sendMessage(Text.translatable("saved.items.module").append("render-" + enabled));
         }
     }
 

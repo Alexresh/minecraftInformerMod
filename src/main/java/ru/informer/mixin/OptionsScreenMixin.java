@@ -21,7 +21,7 @@ public class OptionsScreenMixin extends Screen {
     }
     @Inject(at= @At("RETURN"), method = "init")
     private void addReloadBtn(CallbackInfo ci){
-        this.addDrawableChild(ButtonWidget.builder(Text.translatable("reload,button"), button -> {
+        this.addDrawableChild(ButtonWidget.builder(Text.translatable("reload.button"), button -> {
             if(!Main.config.reload()){
                 Main.LOGGER.error("(OptionScreenMixin.addReloadBtn) config file corrupted");
             }
