@@ -32,6 +32,7 @@ public abstract class InventoryMixin extends AbstractInventoryScreen<PlayerScree
     @Inject(at=@At("RETURN"), method = "init")
     private void addButton(CallbackInfo ci){
         if(Boolean.parseBoolean(Main.config.getProperty(Configuration.allProperties.AutoClicker))){
+            if(client == null) return;
             this.addDrawableChild(ButtonWidget.builder(Text.translatable("autoclick.title"), button -> this.client.setScreen(new AutoClickerScreen(this))).dimensions(Main.OPENMINFOLDER_X , Main.OPENMINFOLDER_Y, 100, Main.OPENMINFOLDER_HEIGHT).build());
         }
     }
@@ -39,6 +40,7 @@ public abstract class InventoryMixin extends AbstractInventoryScreen<PlayerScree
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
         if(keyCode == 65){
+            if(client == null || client.player == null) return super.keyPressed(keyCode, scanCode, modifiers);
             ItemStack savedItem = handler.getCursorStack().copyWithCount(1);
             if(!savedItem.isEmpty()){
                 ArrayList<ItemStack> items = SavedItemsStorage.getItems();

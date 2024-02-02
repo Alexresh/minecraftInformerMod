@@ -16,6 +16,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import ru.informer.Main;
+import ru.informer.utils.Configuration;
 import ru.informer.utils.SavedItemsStorage;
 
 import java.util.ArrayList;
@@ -26,9 +28,9 @@ import java.util.List;
 public abstract class CreativeInventoryMixin extends AbstractInventoryScreen<CreativeInventoryScreen.CreativeScreenHandler> {
 
     private final int itemSize = 20;
-    private final int rowCount = 15;
-    private final int interfaceX = 10;
-    private final int interfaceY = 10;
+    private final int rowsCount = Integer.parseInt(Main.config.getProperty(Configuration.allProperties.savedItemsRowsCount));
+    private final int interfaceX = Integer.parseInt(Main.config.getProperty(Configuration.allProperties.savedItemsPosX));
+    private final int interfaceY = Integer.parseInt(Main.config.getProperty(Configuration.allProperties.savedItemsPosY));
     private ArrayList<ItemStack> items;
     private boolean enabled = false;
 
@@ -69,8 +71,8 @@ public abstract class CreativeInventoryMixin extends AbstractInventoryScreen<Cre
         if(!enabled) return;
         //interfaceX = context.getScaledWindowWidth() / 2 - (rowCount * itemSize) / 2;
         for (int i = 0; i < items.size(); i++){
-            int x = (i % rowCount) * itemSize + interfaceX;
-            int y = (i / rowCount) * itemSize + interfaceY;
+            int x = (i % rowsCount) * itemSize + interfaceX;
+            int y = (i / rowsCount) * itemSize + interfaceY;
             context.drawItemWithoutEntity(items.get(i), x + 2, y + 2);
             context.drawBorder(x,y, itemSize, itemSize, 0xFFFFFFFF);
         }
@@ -111,10 +113,10 @@ public abstract class CreativeInventoryMixin extends AbstractInventoryScreen<Cre
        }
 
     private int getIdFromCoordinates(double mouseX, double mouseY){
-        if(mouseX <= interfaceX || mouseX >= interfaceX + itemSize * rowCount || mouseY < interfaceY) return -1;
+        if(mouseX <= interfaceX || mouseX >= interfaceX + itemSize * rowsCount || mouseY < interfaceY) return -1;
         mouseX = mouseX - interfaceX;
         mouseY = mouseY - interfaceY;
-        return ((int)(mouseY / itemSize) * rowCount + (int)(mouseX / itemSize + 1)) - 1;
+        return ((int)(mouseY / itemSize) * rowsCount + (int)(mouseX / itemSize + 1)) - 1;
     }
 
 }
